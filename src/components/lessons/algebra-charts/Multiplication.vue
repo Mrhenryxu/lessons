@@ -431,7 +431,17 @@
                     this.startTime = new Date().getTime();
                 }
                 if (num === "") {
-                    return;
+                    for (var ii = 0; ii < this.checkRow.length; ii++) {
+                        if (this.checkRow[ii] === r && this.checkCol[ii] === c) {
+                            let index = r * 10 + c;
+                            this.$refs[index][0].classList.remove("red");
+                            this.$refs[index][0].classList.remove("g");
+                            this.checkRow.splice(ii, 1);
+                            this.checkCol.splice(ii, 1);
+                            this.checkVal.splice(ii, 1);
+                            return;
+                        }
+                    }
                 } else {
                     //alert(num);
                     let v = num.replace(/\s/g, '');

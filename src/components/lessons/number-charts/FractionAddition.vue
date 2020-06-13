@@ -284,7 +284,6 @@
 
             },
             purify: function(mother ,son) {
-
                 var x, y;
                 var temp = [];
                 var j = 2;
@@ -313,7 +312,6 @@
                         var r=Math.floor(indexDemo/100);
                         var c=Math.floor(indexDemo/10)-r*10;
                         if (r === 1) {
-
                             let result=this.purify(this.arrSimpleOne[c - 2], this.arrSimpleThree[c - 2]);
                             if (this.checkValDemo[i] === result[0][1]&&this.checkValNume[i] === result[0][0]) {
                                 if (this.$refs[indexDemo][0].classList.value === "red" && this.$refs[indexNume][0].classList.value === "red") {
@@ -437,7 +435,52 @@
                     this.startTime = new Date().getTime();
                 }
                 if (num === "") {
-                    return;
+                    if(r>10 && r<100){
+                        for (let i = 0; i < this.checkV.length; i++) {
+                            if (this.checkR[i] === r) {
+                                this.checkV.splice(i, 1);
+                                this.checkR.splice(i, 1);
+                                let index = r;
+                                this.$refs[index][0].classList.remove("red");
+                                this.$refs[index][0].classList.remove("g");
+                                return;
+                            }
+                        }
+                    }
+                    if(r-Math.floor(r/10)*10===1){
+                        for (let i = 0; i < this.checkNume.length; i++) {
+                            if (this.checkNume[i] === r) {
+                                this.checkNume.splice(i, 1);
+                                this.checkValNume.splice(i, 1);
+                                this.checkDemo.splice(i, 1);
+                                this.checkValDemo.splice(i, 1);
+                                let y=r+1;
+                                this.$refs[r][0].classList.remove("red");
+                                this.$refs[r][0].classList.remove("g");
+                                this.$refs[y][0].classList.remove("red");
+                                this.$refs[y][0].classList.remove("g");
+                                this.inputNum[y] = "";
+                                return;
+                            }
+                        }
+                    }
+                    if(r-Math.floor(r/10)*10===2){
+                        for (let i = 0; i < this.checkDemo.length; i++) {
+                            if (this.checkDemo[i] === r) {
+                                this.checkNume.splice(i, 1);
+                                this.checkValNume.splice(i, 1);
+                                this.checkDemo.splice(i, 1);
+                                this.checkValDemo.splice(i, 1);
+                                let y=r-1;
+                                this.$refs[r][0].classList.remove("red");
+                                this.$refs[r][0].classList.remove("g");
+                                this.$refs[y][0].classList.remove("red");
+                                this.$refs[y][0].classList.remove("g");
+                                this.inputNum[y] = "";
+                                return;
+                            }
+                        }
+                    }
                 } else {
                     if(r-Math.floor(r/10)*10===1){
                         for (let i = 0; i < this.checkNume.length; i++) {
