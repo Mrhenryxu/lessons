@@ -19,7 +19,7 @@
                 v-model="selected"
                 v-on:change="generateTable()"
               >
-                <option v-for="option in options" v-bind:value="option.value">
+                <option v-for="option in options" v-bind:value="option.value" :key="option.value">
                   {{ option.text }}
                 </option>
               </select>
@@ -32,7 +32,7 @@
                 v-model="selected1"
                 v-on:change="generateTable()"
               >
-                <option v-for="s1 in options1" v-bind:value="s1.value">
+                <option v-for="s1 in options1" v-bind:value="s1.value" :key="s1.value">
                   {{ s1.text }}
                 </option>
               </select>
@@ -74,7 +74,7 @@
                 id="tableAdd"
                 style="color: #004488; text-align: center;vertical-align: center; visibility: visible; border: #7f8c8d solid; background: white;"
               >
-                <tr v-for="i in selected + 1">
+                <tr v-for="i in selected + 1" :key="i">
                   <td
                     v-for="j in selected + 1"
                     :style="
@@ -82,6 +82,7 @@
                         ? 'width: 6vw; height: 5vw; background: rgba(165, 220, 255, 1)'
                         : 'width: 6vw; height: 5vw;'
                     "
+                    :key="j"
                   >
                     <b v-if="i === 1 && j === 1"><span style="color: black; font-size: 2rem">+</span></b>
                     <b
@@ -1182,7 +1183,7 @@ export default {
         this.startTime = new Date().getTime();
       }
       if (num === "") {
-        for (var ii = 0; ii < this.checkRow.length; i++) {
+        for (var ii = 0; ii < this.checkRow.length; ii++) {
           if (this.checkRow[ii] === r && this.checkCol[ii] === c) {
             let index = r * 10 + c;
             this.$refs[index][0].classList.remove("red");
